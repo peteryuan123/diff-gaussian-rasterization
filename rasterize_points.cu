@@ -147,8 +147,8 @@ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Te
 	const torch::Tensor& imageBuffer,
 	const torch::Tensor& angular_vel,
 	const torch::Tensor& linear_vel,
-	const torch::Tensor& vel_transofrm,
-	const torch::Tensor& vel_transofrm_inv,
+	const torch::Tensor& vel_transform,
+	const torch::Tensor& vel_transform_inv,
 	const float delta_time,
 	const bool debug)
 {
@@ -199,8 +199,8 @@ std::tuple<torch::Tensor, torch::Tensor, torch::Tensor, torch::Tensor, torch::Te
 	  reinterpret_cast<char*>(imageBuffer.contiguous().data_ptr()),
 	  angular_vel.contiguous().data<float>(),
 	  linear_vel.contiguous().data<float>(),
-	  vel_transofrm.contiguous().data<float>(),
-	  vel_transofrm_inv.contiguous().data<float>(),
+	  vel_transform.contiguous().data<float>(),
+	  vel_transform_inv.contiguous().data<float>(),
 	  delta_time,
 	  dL_dout_color.contiguous().data<float>(),
 	  dL_dout_depths.contiguous().data<float>(),

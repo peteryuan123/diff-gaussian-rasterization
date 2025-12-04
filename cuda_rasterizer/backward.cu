@@ -158,8 +158,8 @@ __global__ void computeCov2DCUDA(int P,
 	const float* view_matrix,
 	const float* angular_vel,
 	const float* linear_vel,
-	const float* vel_transofrm,
-	const float* vel_transofrm_inv,
+	const float* vel_transform,
+	const float* vel_transform_inv,
 	const float delta_time,
 	const float* dL_dconics,
 	float3* dL_dmeans,
@@ -293,8 +293,8 @@ __global__ void computeCov2DCUDA(int P,
 
 
 	/*================pre-calculated vel transform=================*/
-	SE3 T_vel(vel_transofrm);
-	SE3 T_vel_inv(vel_transofrm_inv);
+	SE3 T_vel(vel_transform);
+	SE3 T_vel_inv(vel_transform_inv);
 
 	// if (idx == 0) {
 	// 	// printf("delta_time: %.6f\n", delta_time);
@@ -509,8 +509,8 @@ __global__ void preprocessCUDA(
 	const float *proj_raw,
 	const float* angular_vel,
 	const float* linear_vel,
-	const float* vel_transofrm,
-	const float* vel_transofrm_inv,
+	const float* vel_transform,
+	const float* vel_transform_inv,
 	const float delta_time,
 	const glm::vec3* campos,
 	const float3* dL_dmean2D,
@@ -557,8 +557,8 @@ __global__ void preprocessCUDA(
 	float d = proj_raw[14];
 	float e = proj_raw[11];
 
-	SE3 T_vel(vel_transofrm);
-	SE3 T_vel_inv(vel_transofrm_inv);
+	SE3 T_vel(vel_transform);
+	SE3 T_vel_inv(vel_transform_inv);
 	SE3 T_CW(viewmatrix);
 	SE3 T_CW_prime = T_vel_inv * T_CW;
 
@@ -919,8 +919,8 @@ void BACKWARD::preprocess(
 	const float tan_fovx, float tan_fovy,
 	const float* angular_vel,
 	const float* linear_vel,
-	const float* vel_transofrm,
-	const float* vel_transofrm_inv,
+	const float* vel_transform,
+	const float* vel_transform_inv,
 	const float delta_time,
 	const glm::vec3* campos,
 	const float3* dL_dmean2D,
@@ -951,8 +951,8 @@ void BACKWARD::preprocess(
 		viewmatrix,
 		angular_vel,
 		linear_vel,
-		vel_transofrm,
-		vel_transofrm_inv,
+		vel_transform,
+		vel_transform_inv,
 		delta_time,
 		dL_dconic,
 		(float3*)dL_dmean3D,
@@ -977,8 +977,8 @@ void BACKWARD::preprocess(
 		projmatrix_raw,
 		angular_vel,
 		linear_vel,
-		vel_transofrm,
-		vel_transofrm_inv,
+		vel_transform,
+		vel_transform_inv,
 		delta_time,
 		campos,
 		(float3*)dL_dmean2D,

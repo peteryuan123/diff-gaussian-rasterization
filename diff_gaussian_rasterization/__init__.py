@@ -143,8 +143,8 @@ class _RasterizeGaussians(torch.autograd.Function):
                 imgBuffer,
                 raster_settings.angular_vel,
                 raster_settings.linear_vel,
-                raster_settings.vel_transofrm,
-                raster_settings.vel_transofrm_inv,
+                raster_settings.vel_transform,
+                raster_settings.vel_transform_inv,
                 raster_settings.delta_time,
                 raster_settings.debug)
 
@@ -201,8 +201,8 @@ class GaussianRasterizationSettings(NamedTuple):
     prefiltered : bool
     angular_vel : torch.Tensor
     linear_vel : torch.Tensor
-    vel_transofrm : torch.Tensor
-    vel_transofrm_inv : torch.Tensor
+    vel_transform : torch.Tensor
+    vel_transform_inv : torch.Tensor
     delta_time : float
     debug : bool
 
